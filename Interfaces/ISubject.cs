@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace gestao_de_financas
 {
-    public abstract class Financa
+    interface ISubject
     {
-        public int ID { get; }
-        public string Nome { get; set; }
+        void RegistrarObservador(IObserver observer);
+        void RemoverObservador(IObserver observer);
+        void NotificarObservador();
     }
 }
