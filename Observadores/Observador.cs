@@ -20,13 +20,8 @@ namespace gestao_de_financas.Observadores
 
         public void Atualizar(double valor)
         {
-            Console.WriteLine($"Valor atualizado para: ${valor.ToString("C", new System.Globalization.CultureInfo("pt-BR"))}");
-        }
-
-        public Observador(double valor, ISubject subject)
-        {
             this.Valor = valor;
-            subject.RegistrarObservador(this);
+            Console.WriteLine($"Valor atualizado para: ${valor.ToString("C", new System.Globalization.CultureInfo("pt-BR"))}");
         }
     }
 }

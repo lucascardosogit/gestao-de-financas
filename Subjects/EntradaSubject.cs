@@ -1,35 +1,42 @@
-﻿using gestao_de_financas.Observadores;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace gestao_de_financas.Assuntos
+namespace gestao_de_financas.Model
 {
-    public class Assunto : ISubject
+    public class EntradaSubject : ISubject
     {
+        private List<EntradaModel> entradas = new List<EntradaModel>();
         private List<IObserver> observadores = new List<IObserver>();
 
-        private Financa financaObj;
+        public double valorEntradas { get; set; } = 0;
 
-        public Assunto(int id, string nome, double valor, DateTime data)
+
+        public double getValorEntradas()
         {
-            financaObj = new Financa(id, nome, valor, data);
+            return valorEntradas;
         }
 
-        public double getValor()
+        public void setValorEntradas(EntradaModel entrada, string operacao)
         {
-            return financaObj.Valor;
-        }
-
-        public void setValor(double valor)
-        {
-            financaObj.Valor = valor;
-            Console.WriteLine($"Valor atualizado para: ${financaObj.Valor}");
+            if(operacao.ToLower().Equals("adicionar"))
+            {
+                valorEntradas += entrada.Valor;
+                entradas.Add(entrada);
+            }
+            if (operacao.ToLower().Equals("remover"))
+            {
+                valorEntradas -= entrada.Valor;
+                entradas.Remove(entrada);
+            }
+                
+            Console.WriteLine($"Valor atualizado para: ${valorEntradas}");
             NotificarObservador();
         }
+
         public void RegistrarObservador(IObserver observer)
         {
             //Adicionar arquivo de log para quando um notificador for adicionado
@@ -47,7 +54,7 @@ namespace gestao_de_financas.Assuntos
             Console.WriteLine("\n\nNotificando todos os Observadores registrados");
             foreach (IObserver observer in observadores)
             {
-                observer.Atualizar(financaObj.Valor);
+                observer.Atualizar(valorEntradas);
             }
         }
     }

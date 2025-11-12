@@ -1,0 +1,2 @@
+Classe Caixa representa as caixas de entrada, saída e total da aplicação; conforme forem adicionados itens da categoria entrada ou saída, 
+os observadores são notificados e tem seu valor atualizado de acordo com o total de cada categoria

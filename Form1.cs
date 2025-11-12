@@ -16,5 +16,15 @@ namespace gestao_de_financas
         {
             InitializeComponent();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string nome = this.nome.Text;
+            double valor = double.Parse(txtValor.Text);
+            DateTime data = DateTime.Parse(dtData.Text);
+            string categoria = comboCategoria.Text;
+
+            totalValue.Text = valor.ToString();
+        }
     }
 }
