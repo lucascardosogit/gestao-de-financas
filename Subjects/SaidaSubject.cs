@@ -1,0 +1,62 @@
+﻿using gestao_de_financas.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace gestao_de_financas.Subjects
+{
+    public class SaidaSubject : ISubject
+    {
+        private List<SaidaModel> saidas = new List<SaidaModel>();
+        private List<IObserver> observadores = new List<IObserver>();
+
+        public double valorSaidas { get; set; } = 0;
+
+
+        public double getValorSaidas()
+        {
+            return valorSaidas;
+        }
+
+        public void setValorSaidas(SaidaModel saida, string operacao)
+        {
+            if (operacao.ToLower().Equals("adicionar"))
+            {
+                valorSaidas += saida.Valor;
+                saidas.Add(saida);
+            }
+            if (operacao.ToLower().Equals("remover"))
+            {
+                valorSaidas -= saida.Valor;
+                saidas.Remove(saida);
+            }
+
+            Console.WriteLine($"Valor atualizado para: ${valorSaidas}");
+            NotificarObservador();
+        }
+
+        public void RegistrarObservador(IObserver observer)
+        {
+            //Adicionar arquivo de log para quando um notificador for adicionado
+            observadores.Add(observer);
+        }
+
+        public void RemoverObservador(IObserver observer)
+        {
+            //Adicionar arquivo de log para quando um notificador for removido
+            observadores.Remove(observer);
+        }
+        public void NotificarObservador()
+        {
+            //Adicionar arquivo de log para quando um notificador for notificado
+            Console.WriteLine("\n\nNotificando todos os Observadores registrados");
+            foreach (IObserver observer in observadores)
+            {
+                observer.Atualizar(valorSaidas);
+            }
+        }
+    }
+
+}
