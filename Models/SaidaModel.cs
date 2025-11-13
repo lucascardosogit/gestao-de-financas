@@ -9,19 +9,17 @@ namespace gestao_de_financas
 {
     public class SaidaModel
     {
-        public int Id { get; }
+        public string Id { get; }
         public string Nome { get; set; }
         public double Valor { get; set; }
         public DateTime Data { get; set; }
-        public string Categoria { get; set; }
 
-        public SaidaModel(int id, string nome, double valor, DateTime data)
+        public SaidaModel(string id, string nome, double valor, DateTime data)
         {
             this.Id = id;
             this.Nome = nome;
             this.Valor = valor;
             this.Data = data;
-            this.Categoria = "Saída";
         }
     }
 }

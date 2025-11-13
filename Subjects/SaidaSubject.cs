@@ -15,6 +15,8 @@ namespace gestao_de_financas.Subjects
         public double valorSaidas { get; set; } = 0;
 
 
+        public SaidaSubject() {}
+
         public double getValorSaidas()
         {
             return valorSaidas;

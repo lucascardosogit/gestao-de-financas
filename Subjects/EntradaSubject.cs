@@ -15,6 +15,8 @@ namespace gestao_de_financas.Model
         public double valorEntradas { get; set; } = 0;
 
 
+        public EntradaSubject() {}
+
         public double getValorEntradas()
         {
             return valorEntradas;

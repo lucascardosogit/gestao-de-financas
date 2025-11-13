@@ -8,19 +8,17 @@ namespace gestao_de_financas.Model
 {
     public class EntradaModel
     {
-        public int Id { get; }
+        public string Id { get; }
         public string Nome { get; set; }
         public double Valor { get; set; }
         public DateTime Data { get; set; }
-        public string Categoria { get; set; }
 
-        public EntradaModel(int id, string nome, double valor, DateTime data)
+        public EntradaModel(string id, string nome, double valor, DateTime data)
         {
             this.Id = id;
             this.Nome = nome;
             this.Valor = valor;
             this.Data = data;
-            this.Categoria = "Entrada";
         }
     }
 }

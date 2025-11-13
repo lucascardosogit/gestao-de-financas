@@ -15,13 +15,11 @@ namespace gestao_de_financas.Observadores
         {
             this.Nome = nome;
             subject.RegistrarObservador(this);
-            Console.WriteLine($"Registrado observador: {nome}");
         }
 
         public void Atualizar(double valor)
         {
             this.Valor = valor;
-            Console.WriteLine($"Valor atualizado para: ${valor.ToString("C", new System.Globalization.CultureInfo("pt-BR"))}");
         }
     }
 }
