@@ -34,6 +34,8 @@ namespace gestao_de_financas
             double valor = double.Parse(txtValor.Text);
             DateTime data = DateTime.Parse(dtData.Text);
 
+            //leonardo e lucas
+
             entradaSubject.setValorEntradas(new EntradaModel("e1", nome, valor, data), "adicionar");
 
             //valorTotalEntrada.Text = entradaSubject.getValorEntradas().ToString();
