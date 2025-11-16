@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,11 +10,10 @@ namespace gestao_de_financas.Model
 {
     public class EntradaSubject : ISubject
     {
-        private List<EntradaModel> entradas = new List<EntradaModel>();
+        public List<EntradaModel> entradas = new List<EntradaModel>();
         private List<IObserver> observadores = new List<IObserver>();
 
         public double valorEntradas { get; set; } = 0;
-
 
         public EntradaSubject() {}
 

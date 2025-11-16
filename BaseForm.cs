@@ -16,10 +16,16 @@ namespace gestao_de_financas
 
 		public BaseForm()
 		{
-			InitializeComponent();
-		}
+            InitializeBaseComponent();
 
-        private void telaNovaEntrada_Click(object sender, EventArgs e)
+        }
+
+        private void BaseForm_Load(object sender, EventArgs e)
+        {
+            tabelaDeEntradas.DataSource = entradaSubject.entradas;
+        }
+
+        private void TelaNovaEntrada_Click(object sender, EventArgs e)
         {
             this.Controls.Clear();
             InitializeComponentNovaEntrada();
@@ -28,17 +34,53 @@ namespace gestao_de_financas
             Observador totalEntradaObservador = new Observador("totalEntradaObservador", entradaSubject);
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void CadastrarEntrada_Click(object sender, EventArgs e)
         {
             string nome = this.nome.Text;
             double valor = double.Parse(txtValor.Text);
-            DateTime data = DateTime.Parse(dtData.Text);
+            DateTime data = dtData.Value;
 
-            //leonardo e lucas
+            entradaSubject.setValorEntradas(new EntradaModel(DeclaradorId(), nome, valor, data), "adicionar");
 
-            entradaSubject.setValorEntradas(new EntradaModel("e1", nome, valor, data), "adicionar");
+            AtualizarTabelaEntradas();
+        }
 
-            //valorTotalEntrada.Text = entradaSubject.getValorEntradas().ToString();
+        private string DeclaradorId()
+        {
+            if(entradaSubject.entradas.Count == 0)
+            {
+                return "e1";
+            } else
+            {
+                return $"e{entradaSubject.entradas.Count}";
+            }
+        }
+
+        private void FormatarColunasTabela()
+        {
+            if (tabelaDeEntradas.Columns.Count > 0)
+            {
+                tabelaDeEntradas.Columns["Id"].HeaderText = "ID";
+                tabelaDeEntradas.Columns["Nome"].HeaderText = "Descrição";
+                tabelaDeEntradas.Columns["Valor"].HeaderText = "Valor";
+                tabelaDeEntradas.Columns["Data"].HeaderText = "Data";
+                tabelaDeEntradas.Columns["Valor"].DefaultCellStyle.Format = "C2";
+                tabelaDeEntradas.Columns["Data"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            }
+        }
+
+        private void AtualizarTabelaEntradas()
+        {
+            tabelaDeEntradas.DataSource = null;
+            tabelaDeEntradas.DataSource = entradaSubject.entradas;
+        }
+
+        private void LimparCampos()
+        {
+            txtNome.Clear();
+            txtValor.Clear();
+            dtData.Value = DateTime.Now;
+            txtNome.Focus();
         }
     }
 }
