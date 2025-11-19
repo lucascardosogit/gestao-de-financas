@@ -9,7 +9,7 @@ namespace gestao_de_financas.Subjects
 {
     public class SaidaSubject : ISubject
     {
-        private List<SaidaModel> saidas = new List<SaidaModel>();
+        private List<RegistroModel> saidas = new List<RegistroModel>();
         private List<IObserver> observadores = new List<IObserver>();
 
         public double valorSaidas { get; set; } = 0;
@@ -22,7 +22,7 @@ namespace gestao_de_financas.Subjects
             return valorSaidas;
         }
 
-        public void setValorSaidas(SaidaModel saida, string operacao)
+        public void setValorSaidas(RegistroModel saida, string operacao)
         {
             if (operacao.ToLower().Equals("adicionar"))
             {

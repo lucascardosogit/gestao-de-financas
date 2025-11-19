@@ -54,8 +54,7 @@
     </Compile>
     <Compile Include="Interfaces\IObserver.cs" />
     <Compile Include="Interfaces\ISubject.cs" />
-    <Compile Include="Models\EntradaModel.cs" />
-    <Compile Include="Models\SaidaModel.cs" />
+    <Compile Include="Models\RegistroModel.cs" />
     <Compile Include="Subjects\EntradaSubject.cs" />
     <Compile Include="Observadores\Observador.cs" />
     <Compile Include="Program.cs" />

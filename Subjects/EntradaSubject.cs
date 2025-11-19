@@ -10,19 +10,25 @@ namespace gestao_de_financas.Model
 {
     public class EntradaSubject : ISubject
     {
-        public List<EntradaModel> entradas = new List<EntradaModel>();
+        public List<RegistroModel> entradas = new List<RegistroModel>();
         private List<IObserver> observadores = new List<IObserver>();
+        private int proximoId = 1;
 
         public double valorEntradas { get; set; } = 0;
 
         public EntradaSubject() {}
+
+        public int ObterProximoId()
+        {
+            return proximoId++;
+        }
 
         public double getValorEntradas()
         {
             return valorEntradas;
         }
 
-        public void setValorEntradas(EntradaModel entrada, string operacao)
+        public void setValorEntradas(RegistroModel entrada, string operacao)
         {
             if(operacao.ToLower().Equals("adicionar"))
             {
@@ -35,7 +41,6 @@ namespace gestao_de_financas.Model
                 entradas.Remove(entrada);
             }
                 
-            Console.WriteLine($"Valor atualizado para: ${valorEntradas}");
             NotificarObservador();
         }
 

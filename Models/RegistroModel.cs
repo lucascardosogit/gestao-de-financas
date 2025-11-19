@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace gestao_de_financas
 {
-    public class SaidaModel
+    public class RegistroModel
     {
-        public string Id { get; }
-        public string Nome { get; set; }
+        public int Id { get; }
+        public string Descricao { get; set; }
         public double Valor { get; set; }
         public DateTime Data { get; set; }
 
-        public SaidaModel(string id, string nome, double valor, DateTime data)
+        public RegistroModel(int id, string descricao, double valor, DateTime data)
         {
             this.Id = id;
-            this.Nome = nome;
+            this.Descricao = descricao;
             this.Valor = valor;
             this.Data = data;
         }
