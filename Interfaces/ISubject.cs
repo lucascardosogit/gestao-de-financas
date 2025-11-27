@@ -10,6 +10,6 @@ namespace gestao_de_financas
     {
         void RegistrarObservador(IObserver observer);
         void RemoverObservador(IObserver observer);
-        void NotificarObservador();
+        void NotificarObservadores();
     }
 }

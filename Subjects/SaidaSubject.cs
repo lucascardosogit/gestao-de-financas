@@ -35,8 +35,7 @@ namespace gestao_de_financas.Subjects
                 saidas.Remove(saida);
             }
 
-            Console.WriteLine($"Valor atualizado para: ${valorSaidas}");
-            NotificarObservador();
+            NotificarObservadores();
         }
 
         public void RegistrarObservador(IObserver observer)
@@ -50,10 +49,9 @@ namespace gestao_de_financas.Subjects
             //Adicionar arquivo de log para quando um notificador for removido
             observadores.Remove(observer);
         }
-        public void NotificarObservador()
+        public void NotificarObservadores()
         {
             //Adicionar arquivo de log para quando um notificador for notificado
-            Console.WriteLine("\n\nNotificando todos os Observadores registrados");
             foreach (IObserver observer in observadores)
             {
                 observer.Atualizar(valorSaidas);

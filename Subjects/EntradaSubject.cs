@@ -12,7 +12,7 @@ namespace gestao_de_financas.Model
     {
         public List<RegistroModel> entradas = new List<RegistroModel>();
         private List<IObserver> observadores = new List<IObserver>();
-        private int proximoId = 1;
+        private int proximoId = 0;
 
         public double valorEntradas { get; set; } = 0;
 
@@ -20,7 +20,8 @@ namespace gestao_de_financas.Model
 
         public int ObterProximoId()
         {
-            return proximoId++;
+            proximoId++;
+            return proximoId;
         }
 
         public double getValorEntradas()
@@ -41,24 +42,20 @@ namespace gestao_de_financas.Model
                 entradas.Remove(entrada);
             }
                 
-            NotificarObservador();
+            NotificarObservadores();
         }
 
         public void RegistrarObservador(IObserver observer)
         {
-            //Adicionar arquivo de log para quando um notificador for adicionado
             observadores.Add(observer);
         }
 
         public void RemoverObservador(IObserver observer)
         {
-            //Adicionar arquivo de log para quando um notificador for removido
             observadores.Remove(observer);
         }
-        public void NotificarObservador()
+        public void NotificarObservadores()
         {
-            //Adicionar arquivo de log para quando um notificador for notificado
-            Console.WriteLine("\n\nNotificando todos os Observadores registrados");
             foreach (IObserver observer in observadores)
             {
                 observer.Atualizar(valorEntradas);
